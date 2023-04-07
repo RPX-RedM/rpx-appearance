@@ -7,8 +7,8 @@ RegisterServerEvent("rpx-appearance:server:saveSkin", function(skin, clothes)
     if skin == nil then skin = {} end
     if clothes == nil then clothes = {} end
 
-    Player.func.SetSkinData(skin)
-    Player.func.SetClothesData(clothes)
+    Player.SetSkinData(skin)
+    Player.SetClothesData(clothes)
 end)
 
 RegisterServerEvent("rpx-appearance:server:saveOutfit", function(outfitName, skinData)
