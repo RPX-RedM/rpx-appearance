@@ -5,6 +5,7 @@ rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aw
 ui_page 'html/dist/index.html'
 
 shared_scripts {
+	'@ox_lib/init.lua',
 	'shared/config.lua'
 }
 
@@ -26,3 +27,5 @@ files {
 	'html/dist/*.woff',
 	'html/dist/*.ttf',
 }
+
+lua54 'yes'
