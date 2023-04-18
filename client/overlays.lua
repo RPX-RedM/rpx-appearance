@@ -250,7 +250,7 @@ overlays_info = {
 }
 
 
-  texture_types = {
+texture_types = {
     ["male"] = {
         albedo=GetHashKey("head_fr1_weathered_005_nm"),
         normal=GetHashKey("mp_head_mr1_000_nm"),
@@ -269,9 +269,9 @@ overlays_info = {
     }
 }
 
- current_texture_settings = texture_types["male"]
+current_texture_settings = texture_types["male"]
 
- overlay_all_layers = {
+overlay_all_layers = {
     {name="eyebrows",visibility=0,tx_id=1,tx_normal=0,tx_material=0,tx_color_type=0,tx_opacity=1.0,tx_unk=0,palette=0,palette_color_primary=0,palette_color_secondary=0,palette_color_tertiary=0,var=0,opacity=1.0,    },                                      
     {name="scars",visibility=0,tx_id=1,tx_normal=0,tx_material=0,tx_color_type=0,tx_opacity=1.0,tx_unk=0,palette=0,palette_color_primary=0,palette_color_secondary=0,palette_color_tertiary=0,var=0,opacity=1.0,       },                                      
     {name="eyeliners",visibility=0,tx_id=1,tx_normal=0,tx_material=0,tx_color_type=0,tx_opacity=1.0,tx_unk=0,palette=0,palette_color_primary=0,palette_color_secondary=0,palette_color_tertiary=0,var=0,opacity=1.0,   },                                      

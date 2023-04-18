@@ -1,7 +1,7 @@
  
  -- https://raw.githubusercontent.com/femga/rdr3_discoveries/master/clothes/cloth_hash_names.lua
  
- cloth_hash_names = {
+cloth_hash_names = {
  
  	-- BODIES_UPPER / female
 	{hashname="",category_hashname="BODIES_UPPER",ped_type="female",is_multiplayer=true,category_hash=0x0B3966C9,hash=0x489AFE52,hash_dec_signed=1218117202,category_hash_dec_signed=188311241},

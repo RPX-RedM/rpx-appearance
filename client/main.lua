@@ -99,7 +99,6 @@ end)
 
 AddEventHandler('onResourceStart', function(resource)
     if GetCurrentResourceName() == resource then
-        DisableCamera()
         DestroyAllCams(true)
     end
 end)
@@ -166,10 +165,12 @@ RegisterNUICallback('closeMenu', function()
     LoadSkin(playerPed, SkinData)
     LoadClothes(playerPed, ClothesData, false)
     SetNuiFocus(false, false)
-    RenderScriptCams(false, true, 250, 1, 0)
+    RenderScriptCams(false, true, 250, true, false)
     DestroyCam(Camera, false)
     ClothingRoomTransition(BeforePosition, false)
     FreezeEntityPosition(playerPed, false)
+    LocalPlayer.state.UIHidden = false
+    DisplayRadar(true)
 end)
 
 RegisterNUICallback('closeMenu2', function()
@@ -177,10 +178,12 @@ RegisterNUICallback('closeMenu2', function()
     LoadSkin(playerPed, LocalPlayer.state.skin)
     LoadClothes(playerPed, LocalPlayer.state.clothes, false)
     SetNuiFocus(false, false)
-    RenderScriptCams(false, true, 250, 1, 0)
+    RenderScriptCams(false, true, 250, true, false)
     DestroyCam(Camera, false)
     ClothingRoomTransition(BeforePosition, false)
     FreezeEntityPosition(playerPed, false)
+    LocalPlayer.state.UIHidden = false
+    DisplayRadar(true)
 end)
 
 RegisterNUICallback('save', function()
@@ -339,10 +342,11 @@ ClothingRoomTransition = function(coords, makeInvisible)
     end
 end
 
+
 EnableCamera = function()
     local playerPed = PlayerPedId()
     local playerCoords = GetOffsetFromEntityInWorldCoords(playerPed, 0, 2.0, 0)
-    RenderScriptCams(false, false, 0, 1, 0)
+    RenderScriptCams(false, false, 0, true, false)
     DestroyCam(Camera, false)
     if not DoesCamExist(Camera) then
         Camera = CreateCam('DEFAULT_SCRIPTED_CAMERA', true)
@@ -351,13 +355,17 @@ EnableCamera = function()
         SetCamCoord(Camera, playerCoords.x, playerCoords.y, playerCoords.z + 0.5)
         SetCamRot(Camera, 0.0, 0.0, GetEntityHeading(playerPed) + 180)
     end
+    LocalPlayer.state.UIHidden = true
+    DisplayRadar(false)
 end
 
 DisableCamera = function()
-    RenderScriptCams(false, true, 250, 1, 0)
+    RenderScriptCams(false, true, 250, true, false)
     DestroyCam(Camera, false)
     SetNuiFocus(false, false)
     FreezeEntityPosition(PlayerPedId(), false)
+    LocalPlayer.state.UIHidden = false
+    DisplayRadar(true)
 end
 
 RequestAndSetModel = function(model)
@@ -485,7 +493,7 @@ RegisterCommand('loadskin', function()
         CreateThread(function()
             SetEntityAlpha(PlayerPedId(), 0)
             Wait(10)
-            RequestAndSetModel(LocalPlayer.state.gender and "mp_male" or "mp_female")
+            RequestAndSetModel(LocalPlayer.state.charinfo.gender and "mp_male" or "mp_female")
             SetEntityAlpha(PlayerPedId(), 0)
             Wait(10)
             LoadSkin(PlayerPedId(), LocalPlayer.state.skin)

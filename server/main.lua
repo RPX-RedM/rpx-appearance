@@ -4,6 +4,7 @@ RegisterServerEvent("rpx-appearance:server:saveSkin", function(skin, clothes)
     local src = source
     local Player = RPX.GetPlayer(src)
 
+    if not Player then return end
     if skin == nil then skin = {} end
     if clothes == nil then clothes = {} end
 
@@ -14,7 +15,7 @@ end)
 RegisterServerEvent("rpx-appearance:server:saveOutfit", function(outfitName, skinData)
     local src = source
     local Player = RPX.GetPlayer(src)
-    if skinData ~= nil then
+    if Player and skinData ~= nil then
         local outfitId = "outfit-"..math.random(1, 10).."-"..math.random(1111, 9999)
         MySQL.Async.fetchAll('INSERT INTO outfits (citizenid, outfitname, skin, outfitId) VALUES (@citizenid, @outfitname, @skin, @outfitId)', {
             ['@citizenid'] = Player.citizenid,
@@ -34,12 +35,11 @@ end)
 RegisterServerEvent("rpx-appearance:server:removeOutfit", function(outfitName, outfitId)
     local src = source
     local Player = RPX.GetPlayer(src)
-    MySQL.Async.fetchAll('DELETE outfits (citizenid, outfitname, skin, outfitId) VALUES (@citizenid, @outfitname, @skin, @outfitId)', {
-        ['@citizenid'] = Player.citizenid,
-        ['@outfitname'] = outfitName,
-        ['@skin'] = skinData,
-        ['@outfitId'] = outfitId
-    })
+    if not Player then return end
+
+    -- Delete from outfits table based on outfitid
+    MySQL.query('DELETE FROM outfits WHERE outfitId = @outfitId', { ['@outfitId'] = outfitId })
+
     local result = MySQL.Sync.fetchAll('SELECT * FROM outfits WHERE citizenid = @citizenid', { ['@citizenid'] = Player.citizenid })
     if result[1] ~= nil then
         TriggerClientEvent('rpx-appearance:client:reloadOutfits', src, result)
@@ -58,6 +58,7 @@ end)
 
 exports['rpx-core']:CreateCallback('rpx-appearance:server:getOutfits', function(source, cb)
     local Player = RPX.GetPlayer(source)
+    if not Player then return cb(false) end
     local retVal = {}
 
     local result = MySQL.Sync.fetchAll('SELECT * FROM outfits WHERE citizenid=@citizenid', {['@citizenid'] = Player.citizenid})

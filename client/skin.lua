@@ -1,5 +1,5 @@
-local LegsComponent = 0
-local TorsoComponent = 0
+LegsComponent = 0
+TorsoComponent = 0
 
 LoadSkin = function(ped, data)
   local dataExist = false 
@@ -22,7 +22,7 @@ LoadSkin = function(ped, data)
     local sex = IsPedMale(ped) and 'Male' or 'Female'
     if data.height then 
       local value = tonumber(data.height)
-      SetPedScale(ped, tonumber(value / 100))
+      SetPedScale(ped, tonumber(value / 100) --[[@as number]])
     end
 
     if data.skin > 0 then
@@ -148,7 +148,7 @@ ChangeNotUpdate = function(ped, data)
   local sex = IsPedMale(ped) and 'Male' or 'Female'
   if data.height then 
     local value = tonumber(data.height)
-    SetPedScale(ped, tonumber(value / 100))
+    SetPedScale(ped, tonumber(value / 100) --[[@as number]])
   end
 
   if data.skin > 0 then 
@@ -307,6 +307,7 @@ ToggleOverlayChange = function(_name,_visibility,_tx_id,_tx_normal,_tx_material,
     end
 
     local ped = target
+    local current_texture_settings
 
     if IsPedMale(ped) then
       current_texture_settings = texture_types["male"]
