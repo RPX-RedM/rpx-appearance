@@ -199,7 +199,7 @@ RegisterNUICallback('save', function()
         end
 
         Citizen.Wait(500)
-        TriggerEvent("rpx-spawn:client:NewCharacterSpawn")
+        TriggerEvent("rpx-spawn:client:NewCharacterSpawnSelect")
         TriggerServerEvent("rpx-appearance:server:SavedNewPlayerSkin")
     end
 
