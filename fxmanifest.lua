@@ -4,18 +4,15 @@ rdr3_warning 'I acknowledge that this is a prerelease build of RedM, and I am aw
 
 ui_page 'html/dist/index.html'
 
-shared_scripts {
-	'@ox_lib/init.lua',
-	'shared/config.lua'
-}
+shared_script '@ox_lib/init.lua'
 
 server_scripts {
 	'@oxmysql/lib/MySQL.lua',
-	'server/*.lua'
+	'init.lua',
 }
 
 client_scripts {
-	'client/*.lua',
+	'init.lua',
 }
 
 files {
@@ -26,6 +23,16 @@ files {
 	'html/dist/*.woff2',
 	'html/dist/*.woff',
 	'html/dist/*.ttf',
+
+	'client/*.lua',
+	'server/*.lua',
+	'data/*.lua',
+	'shared/*.lua',
 }
 
+
 lua54 'yes'
+
+dependencies { 'rpx-core', 'ox_lib' }
+
+use_experimental_fxv2_oal 'yes'

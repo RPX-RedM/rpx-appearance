@@ -1,8 +1,6 @@
- 
- -- https://raw.githubusercontent.com/femga/rdr3_discoveries/master/clothes/cloth_hash_names.lua
- 
-cloth_hash_names = {
- 
+-- https://raw.githubusercontent.com/femga/rdr3_discoveries/master/clothes/cloth_hash_names.lua
+
+return {
  	-- BODIES_UPPER / female
 	{hashname="",category_hashname="BODIES_UPPER",ped_type="female",is_multiplayer=true,category_hash=0x0B3966C9,hash=0x489AFE52,hash_dec_signed=1218117202,category_hash_dec_signed=188311241},
 	{hashname="",category_hashname="BODIES_UPPER",ped_type="female",is_multiplayer=true,category_hash=0x0B3966C9,hash=0x4BAD90BA,hash_dec_signed=1269665978,category_hash_dec_signed=188311241},
@@ -13713,7 +13711,6 @@ cloth_hash_names = {
 
 	-- horse_saddle_lanterns
 	{hashname="HORSE_EQUIPMENT_SADDLE_LANTERN_BASIC",category_hashname="horse_saddle_lanterns",ped_type="horse",is_multiplayer=true,category_hash=0x1530BE1C,hash=0x635E387C,hash_dec_signed=1667119228,category_hash_dec_signed=355515932},
-
 }
 
 --  All categories are joaat hashes from these names:

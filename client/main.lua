@@ -62,7 +62,8 @@ Citizen.CreateThread(function()
 end)
 
 Citizen.CreateThread(function()
-    for _, v in pairs(cloth_hash_names) do
+    local clothingData = require 'data.clothingdata'
+    for _, v in pairs(clothingData) do
         if v.category_hashname == 'heads'
             or v.category_hashname == 'eyes'
             or v.category_hashname == 'teeth'
@@ -500,7 +501,12 @@ RegisterCommand('loadskin', function()
             LoadClothes(PlayerPedId(), LocalPlayer.state.clothes, false)
             Wait(10)
             SetEntityAlpha(PlayerPedId(), 255)
-            lib.notify({ title = "Character Appearance", description = "Your skin and clothes have been loaded!", icon = "fas fa-user" })
+
+            lib.notify { 
+                title = "Character Appearance", 
+                description = "Your skin and clothes have been loaded!", 
+                icon = "fas fa-user" 
+            }
         end)
     end
 end)
