@@ -405,6 +405,30 @@ GetSkinMaxValues = function()
     else
         skins[#skins + 1] = {name = 'skin', minValue = 0, maxValue = 6, currentValue = 0}
     end
+	
+    if SkinData.height then
+        skins[#skins + 1] = {name = 'height', minValue = 80, maxValue = 110, currentValue = SkinData.height}
+    else
+        skins[#skins + 1] = {name = 'height', minValue = 80, maxValue = 110, currentValue = 0}
+    end
+
+    if SkinData.BodyTypes then
+        skins[#skins + 1] = {name = 'BodyTypes', minValue = 0, maxValue = 5, currentValue = SkinData.BodyTypes}
+    else
+        skins[#skins + 1] = {name = 'BodyTypes', minValue = 0, maxValue = 5, currentValue = 0}
+    end
+
+    if SkinData.BodyWaist then
+        skins[#skins + 1] = {name = 'BodyWaist', minValue = 0, maxValue = 21, currentValue = SkinData.BodyWaist}
+    else
+        skins[#skins + 1] = {name = 'BodyWaist', minValue = 0, maxValue = 21, currentValue = 0}
+    end
+
+    if SkinData.BodyChest then
+        skins[#skins + 1] = {name = 'BodyChest', minValue = 0, maxValue = 11, currentValue = SkinData.BodyChest}
+    else
+        skins[#skins + 1] = {name = 'BodyChest', minValue = 0, maxValue = 11, currentValue = 0}
+    end
 
     for k, v in pairs(Config.Features) do
         if SkinData[k] then
