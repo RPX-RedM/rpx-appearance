@@ -241,6 +241,52 @@ color_palettes = {
     {0xFB71527B}
 }
 
+BodyTypes = {
+    -1241887289,
+    61606861,
+    -369348190,
+    -20262001,
+    32611963,
+}
+
+BodyWaist = {
+    -2045421226, -- smallest
+    -1745814259,
+    -325933489,
+    -1065791927,
+    -844699484,
+    -1273449080,
+    927185840,
+    149872391,
+    399015098,
+    -644349862,
+    1745919061, -- default
+    1004225511,
+    1278600348,
+    502499352,
+    -2093198664,
+    -1837436619,
+    1736416063,
+    2040610690,
+    -1173634986,
+    -867801909,
+    1960266524,
+}
+
+BodyChest = {
+    1676751061, -- upperbody size
+    1437242440, -- upperbody size
+    3025752508, -- upperbody size
+    3319526593, -- upperbody size
+    1492392695, -- upperbody size
+    1781382506, -- upperbody size
+    1824113282, -- upperbody size
+    2123392559, -- upperbody size
+    290229161, -- upperbody size
+    870174923, -- upperbody size
+    465805723, -- upperbody size
+}
+
 texture_types = {
     ["male"] = {
         albedo = GetHashKey("head_fr1_weathered_005_nm"),
@@ -292,11 +338,16 @@ LoadSkin = function(ped, data)
     if data and next(data) then
         dataExist = true
     else
-        data.skin = 1
-        data.heads = 1
-        data.hair = 1
-        data.eyes = 1
-        data.beard = 1
+        data = data or {}
+        data.skin = data.skin or 1
+        data.heads = data.heads or 1
+        data.hair = data.hair or 1
+        data.eyes = data.eyes or 1
+        data.beard = data.beard or 1
+        data.height = data.height or 80
+        data.BodyTypes = data.BodyTypes or 1
+        data.BodyWaist = data.BodyWaist or 1
+        data.BodyChest = data.BodyChest or 1
         dataExist = true
     end
 
@@ -305,10 +356,6 @@ LoadSkin = function(ped, data)
     end
 
     local sex = IsPedMale(ped) and "Male" or "Female"
-    if data.height then
-        local value = tonumber(data.height)
-        SetPedScale(ped, tonumber(value / 100) --[[@as number]])
-    end
 
     if data.skin > 0 then
         local value = tonumber(data.skin)
@@ -396,8 +443,21 @@ LoadSkin = function(ped, data)
         Citizen.InvokeNative(0xD3A7B003ED343FD9, ped, tonumber(hash), false, true, true)
     end
 
-    if data.body_size then
-        Citizen.InvokeNative(0x1902C4CFCC5BE57C, ped, Config.BodyTypes[data.body_size])
+    if data.height then
+        local value = tonumber(data.height)
+        SetPedScale(ped, tonumber(value / 110) --[[@as number]])
+    end
+
+    if data.BodyTypes then
+        Citizen.InvokeNative(0x1902C4CFCC5BE57C, ped, BodyTypes[tonumber(data.BodyTypes)])
+    end
+
+    if data.BodyWaist then
+        Citizen.InvokeNative(0x1902C4CFCC5BE57C, ped, BodyWaist[tonumber(data.BodyWaist)])
+    end
+
+    if data.BodyChest then
+        Citizen.InvokeNative(0x1902C4CFCC5BE57C, ped, BodyChest[tonumber(data.BodyChest)])
     end
 
     for k, v in pairs(data) do
@@ -444,10 +504,6 @@ ChangeNotUpdate = function(ped, data)
     end
 
     local sex = IsPedMale(ped) and "Male" or "Female"
-    if data.height then
-        local value = tonumber(data.height)
-        SetPedScale(ped, tonumber(value / 100) --[[@as number]])
-    end
 
     if data.skin > 0 then
         local value = tonumber(data.skin)
@@ -534,8 +590,22 @@ ChangeNotUpdate = function(ped, data)
         Citizen.InvokeNative(0xD3A7B003ED343FD9, ped, tonumber(hash), false, true, true)
     end
 
-    if data.body_size then
-        Citizen.InvokeNative(0x1902C4CFCC5BE57C, ped, Config.BodyTypes[data.body_size])
+    if data.height then
+        local value = tonumber(data.height)
+        SetPedScale(ped, tonumber(value / 110) --[[@as number]])
+    end
+
+    if data.BodyTypes then
+        Citizen.InvokeNative(0x1902C4CFCC5BE57C, ped, BodyTypes[tonumber(data.BodyTypes)])
+    end
+
+    if data.BodyWaist then
+        Citizen.InvokeNative(0x1902C4CFCC5BE57C, ped, BodyWaist[tonumber(data.BodyWaist)])
+    end
+
+    if data.BodyChest then
+        Citizen.InvokeNative(0x1902C4CFCC5BE57C, ped, BodyChest[tonumber(data.BodyChest)])
+        Citizen.InvokeNative(0xCC8CA3E88256E58F, ped, false, true, true, true, false)
     end
 
     for k, v in pairs(data) do
