@@ -405,13 +405,7 @@ GetSkinMaxValues = function()
     else
         skins[#skins + 1] = {name = 'skin', minValue = 0, maxValue = 6, currentValue = 0}
     end
-	
-    if SkinData.height then
-        skins[#skins + 1] = {name = 'height', minValue = 80, maxValue = 110, currentValue = SkinData.height}
-    else
-        skins[#skins + 1] = {name = 'height', minValue = 80, maxValue = 110, currentValue = 0}
-    end
-
+    
     if SkinData.BodyTypes then
         skins[#skins + 1] = {name = 'BodyTypes', minValue = 0, maxValue = 5, currentValue = SkinData.BodyTypes}
     else
