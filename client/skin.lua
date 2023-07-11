@@ -344,7 +344,6 @@ LoadSkin = function(ped, data)
         data.hair = data.hair or 1
         data.eyes = data.eyes or 1
         data.beard = data.beard or 1
-        data.height = data.height or 80
         data.BodyTypes = data.BodyTypes or 1
         data.BodyWaist = data.BodyWaist or 1
         data.BodyChest = data.BodyChest or 1
@@ -441,11 +440,6 @@ LoadSkin = function(ped, data)
         local value = tonumber(data.beard)
         local hash = Skins[sex]["beard"][value]
         Citizen.InvokeNative(0xD3A7B003ED343FD9, ped, tonumber(hash), false, true, true)
-    end
-
-    if data.height then
-        local value = tonumber(data.height)
-        SetPedScale(ped, tonumber(value / 110) --[[@as number]])
     end
 
     if data.BodyTypes then
@@ -588,11 +582,6 @@ ChangeNotUpdate = function(ped, data)
         local value = tonumber(data.beard)
         local hash = Skins[sex]["beard"][value]
         Citizen.InvokeNative(0xD3A7B003ED343FD9, ped, tonumber(hash), false, true, true)
-    end
-
-    if data.height then
-        local value = tonumber(data.height)
-        SetPedScale(ped, tonumber(value / 110) --[[@as number]])
     end
 
     if data.BodyTypes then
