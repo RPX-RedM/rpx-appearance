@@ -476,6 +476,9 @@ LoadClothes = function(ped, data, preview)
                         end
 
                         local hash = Clothes[sex][k][v]
+                        if not hash then
+                            hash = v
+                        end
                         Citizen.InvokeNative(0xD3A7B003ED343FD9, ped, tonumber(hash), false, true, true)
                     else
                         Citizen.InvokeNative(0xD710A5007C2AC539, ped, GetHashKey(k), 0)

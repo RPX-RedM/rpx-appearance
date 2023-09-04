@@ -427,6 +427,9 @@ LoadSkin = function(ped, data)
     if data.hair then
         local value = tonumber(data.hair)
         local hash = Skins[sex]["hair"][value]
+        if not hash then
+            hash = value
+        end
         Citizen.InvokeNative(0xD3A7B003ED343FD9, ped, tonumber(hash), false, true, true)
     end
 
@@ -439,6 +442,9 @@ LoadSkin = function(ped, data)
     if sex == "Male" and data.beard then
         local value = tonumber(data.beard)
         local hash = Skins[sex]["beard"][value]
+        if not hash then
+            hash = value
+        end
         Citizen.InvokeNative(0xD3A7B003ED343FD9, ped, tonumber(hash), false, true, true)
     end
 
